@@ -1,6 +1,5 @@
-var width = 350;
-var height = 300;
-
+var width = 400;
+var height = 450;
 
 var svg = d3.select( "#main_map" )
     .append( "svg" )
@@ -8,22 +7,16 @@ var svg = d3.select( "#main_map" )
     .attr( "width", width )
     .attr( "height", height );
 
-
 var g = svg.append( "g" );
 
-
-
 var albersProjection = d3.geoAlbers()
-    .scale( 3000 )
+    .scale( 5500 )
     .rotate( [75.527,0] )
     .center( [0,42.954] )
     .translate( [width/2,height/2] );
 
-
 var geoPath = d3.geoPath()
     .projection( albersProjection );
-
-
 
 g.selectAll( "path" )
     .data( counties_json.features )
