@@ -7,6 +7,8 @@
       <link rel="stylesheet" href="../static/css/dashboard.css">
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
     </head>
     <body>
       <!-- navbar -->
@@ -18,8 +20,21 @@
       <!-- main layout components -->
       <div class="main-container">
         <div class="row1">
-          <div class="component1 shadow p-3 mb-5 bg-white rounded">
-            <div id="main_map"></div>
+          <div class = "component1 shadow p-3 mb-5 bg-white rounded">
+            <div class="row11">
+              <div id="main_map"></div>
+              <div class="attributes_sel form-check">
+                <input type="checkbox" id="checkbox" class="form-check-input" value="cases">  Total Tests<br/>
+                <input type="checkbox" id="checkbox" class="form-check-input" value="positives">  Positive Cases</br>
+                <input type="checkbox" id="checkbox" class="form-check-input" value="compare">  Compare Counties  
+              </div>
+            </div>
+
+            <div id="slidercontainer">
+                <input id="slider" type="range" min="0" max="2" value="0" step="1"/><br>
+                <span id="range">March</span>
+            </div>
+
           </div>
           <div class="component2 ">
             

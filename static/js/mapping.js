@@ -1,7 +1,7 @@
 var viewportWidth = $(window).width();
 var viewportHeight = $(window).height()/2;
-var width = viewportWidth *0.45;
-var height = width/1.95;
+var width = viewportWidth *0.37;
+var height = width/1.75;
 var startMonth = 'March';
 
 
