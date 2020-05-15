@@ -1,6 +1,6 @@
 var viewportWidth = $(window).width();
 var viewportHeight = $(window).height()/2;
-var width = viewportWidth *0.45;
+var width = viewportWidth *0.37;
 var height = width/1.75;
 var startMonth = 'March';
 
@@ -8,8 +8,6 @@ var startMonth = 'March';
 window.onload = function() {
   colorpleth(startMonth);
 };
-
-
 
 var svg_main_map = d3.select( "#main_map" )
     .append( "svg" )
@@ -107,5 +105,3 @@ $.post("/colorpleth",{'month':month},function(data){
  });
    
 }
-
-

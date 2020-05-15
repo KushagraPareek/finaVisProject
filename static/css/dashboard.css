@@ -8,7 +8,7 @@
     font-size: xx-large !important;
     font-family: Georgia, 'Times New Roman', Times, serif;
 }
-.container
+/* .container
 {
     display: flex;
     flex-direction: row;
@@ -17,30 +17,49 @@
     width: 100%;
     height: 100%
     
-}
+} */
+
 .main-container{
     padding-left: 5%;
     padding-right: 5%;
 }
 .row1{
-    width: 100%;
     display: flex;
     margin-top:20px;
+    margin-left: 4px;
+    align-items: flex-start;
 }
 .component1{
     flex: 2;
     padding: 3px;
     height: 100%;
     width: 100%;
+    /* align-content: center; */
+    /* justify-content:center; */
     display: flex;
-    align-content: left;
-    justify-content: left;
-   
-    
+    flex-direction: column;
 }
+
+.row11{
+    display: flex;
+    flex-direction:row; 
+}
+#main_map{
+    flex: 4;
+}
+.attributes_sel{
+    flex: 3;
+}
+
+#slider{
+    width: 60%;
+}
+#slidercontainer{
+    text-align: center;
+}
+
 .component2{
     flex:2;
-    
 }
 .row2{
     width: 100%;
@@ -53,4 +72,3 @@
 .hover {
     fill: red;   
 }
-
