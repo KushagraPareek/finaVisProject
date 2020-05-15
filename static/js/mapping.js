@@ -1,7 +1,7 @@
 var viewportWidth = $(window).width();
 var viewportHeight = $(window).height()/2;
 var width = viewportWidth *0.45;
-var height = width/1.75;
+var height = width/1.95;
 var startMonth = 'March';
 
 
@@ -20,7 +20,7 @@ var svg_main_map = d3.select( "#main_map" )
 var group_main_map = svg_main_map.append( "g" );
 
 var albersProjection = d3.geoAlbers()
-    .scale( width*6.5 )
+    .scale( width*5 )
     .rotate( [75.527,0] )
     .center( [0,42.954] )
     .translate( [width/2,height/2] );
