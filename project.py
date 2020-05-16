@@ -5,10 +5,14 @@ import json
 app = Flask(__name__)
 
 
+cases = pd.read_csv('static/data/testing_data.csv')
+cases.columns = ['test_month','county','positives','cum_positives','total_tests','cum_tests']
+
 @app.route('/')
 def hello_world():
     clean_data()
     return render_template("index.html")
+
 
 def clean_data():
     
