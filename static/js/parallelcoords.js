@@ -1,11 +1,11 @@
 
 // set the dimensions and margins of the graph
-var margin = {top: 30, right: 50, bottom: 10, left: 50},
+var margin = {top: 30, right: 30, bottom: 30, left: 30},
   width = 460 - margin.left - margin.right,
   height = 400 - margin.top - margin.bottom;
 
 // append the svg object to the body of the page
-var svg = d3.select("#parallel")
+var svg = d3.select("#parallelc")
 .append("svg")
   .attr("width", width + margin.left + margin.right)
   .attr("height", height + margin.top + margin.bottom)
@@ -14,23 +14,19 @@ var svg = d3.select("#parallel")
         "translate(" + margin.left + "," + margin.top + ")");
 
 // Parse the Data
-d3.csv("/Users/nikitagupta/Desktop/semester 2/Visualization/final project/finaVisProject/static/data/ParallelCoordsData.csv", function(data) {
-    console.log(data[0])
+d3.csv("https://raw.githubusercontent.com/KushagraPareek/finaVisProject/master/static/data/ParallelCoordsData.csv?token=AF677XNTYTS2KZC24JIRCC26ZD3PW", function(data) {
+    console.log(d3.keys(data[0]))
+    dimensions = ["TotalBeds","TotalHospitals","TotalPositives","TotalTests"]
   // Color scale: give me a specie name, I return a color
-  var color = d3.scaleOrdinal()
-    .domain(["setosa", "versicolor", "virginica" ])
-    .range([ "#440154ff", "#21908dff", "#fde725ff"])
-
+  var color = "black"
   // Here I set the list of dimension manually to control the order of axis:
-  dimensions = ["Petal_Length", "Petal_Width", "Sepal_Length", "Sepal_Width"]
 
   // For each dimension, I build a linear scale. I store all in a y object
   var y = {}
   for (i in dimensions) {
     name = dimensions[i]
     y[name] = d3.scaleLinear()
-      .domain( [0,8] ) // --> Same axis range for each group
-      // --> different axis range for each group --> .domain( [d3.extent(data, function(d) { return +d[name]; })] )
+      .domain( d3.extent(data, function(d){ return +d[name]; }) ) 
       .range([height, 0])
   }
 
@@ -40,29 +36,29 @@ d3.csv("/Users/nikitagupta/Desktop/semester 2/Visualization/final project/finaVi
     .domain(dimensions);
 
   // Highlight the specie that is hovered
-  var highlight = function(d){
+//   var highlight = function(d){
 
-    selected_specie = d.Species
+//     selected_specie = d.Species
 
-    // first every group turns grey
-    d3.selectAll(".line")
-      .transition().duration(200)
-      .style("stroke", "lightgrey")
-      .style("opacity", "0.2")
-    // Second the hovered specie takes its color
-    d3.selectAll("." + selected_specie)
-      .transition().duration(200)
-      .style("stroke", color(selected_specie))
-      .style("opacity", "1")
-  }
+//     // first every group turns grey
+//     d3.selectAll(".line")
+//       .transition().duration(200)
+//       .style("stroke", "lightgrey")
+//       .style("opacity", "0.2")
+//     // Second the hovered specie takes its color
+//     d3.selectAll("." + selected_specie)
+//       .transition().duration(200)
+//       .style("stroke", color(selected_specie))
+//       .style("opacity", "1")
+//   }
 
   // Unhighlight
-  var doNotHighlight = function(d){
-    d3.selectAll(".line")
-      .transition().duration(200).delay(1000)
-      .style("stroke", function(d){ return( color(d.Species))} )
-      .style("opacity", "1")
-  }
+//   var doNotHighlight = function(d){
+//     d3.selectAll(".line")
+//       .transition().duration(200).delay(1000)
+//       .style("stroke", function(d){ return( color(d.Species))} )
+//       .style("opacity", "1")
+//   }
 
   // The path function take a row of the csv as input, and return x and y coordinates of the line to draw for this raw.
   function path(d) {
@@ -75,13 +71,13 @@ d3.csv("/Users/nikitagupta/Desktop/semester 2/Visualization/final project/finaVi
     .data(data)
     .enter()
     .append("path")
-      .attr("class", function (d) { return "line " + d.Species } ) // 2 class for each line: 'line' and the group name
+      .attr("class", function (d) { return "line " + d.County } ) // 2 class for each line: 'line' and the group name
       .attr("d",  path)
       .style("fill", "none" )
-      .style("stroke", function(d){ return( color(d.Species))} )
+      .style("stroke", color)
       .style("opacity", 0.5)
-      .on("mouseover", highlight)
-      .on("mouseleave", doNotHighlight )
+  //    .on("mouseover", highlight)
+  //    .on("mouseleave", doNotHighlight )
 
   // Draw the axis:
   svg.selectAll("myAxis")
