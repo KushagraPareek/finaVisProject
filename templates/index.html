@@ -21,39 +21,43 @@
       </nav>
       
      <!--main -->
-     <div class="container">
-      <div class="row">
-        <div class="col-4">
-          <div id="main_map"></div>
-          <div class="d-flex justify-content-center">
-             <div class="w-75">
-               <input type="range" class="custom-range" id="slider" min="0" max="2" step="1">
-             </div>
-             <span class="font-weight-bold ml-2" id="month">April</span>
-           </div>
-        </div>
-        <div class="col-2">
-          <div>
-          <form id="dimensions">
-              <input  type='radio'  id="positive" name="mode"  checked> Positive cases</input><br>
-              <input  type='radio'  id="test"    name="mode" > Total tests</input><br>
-          </form>
+     <div class="main-container">
+      <div class="row1">
+        <!-- first component -->
+        <div class = "component1 shadow p-3 mb-5 bg-white rounded">
+          <!-- dividing into two rows: first has map and legend, second has slider -->
+          <div class="row11">
+            <div id="main_map"></div>
+            <div class="attributes_sel form-check">
+              <form id="dimensions">
+                <input  type='radio'  id="positive" name="mode"  checked> Positive cases</input><br>
+                <input  type='radio'  id="test"    name="mode" > Total tests</input><br>
+              </form>
+            </div>
           </div>
+
+          <div id="slidercontainer">
+            <input type="range" class="custom-range" id="slider" min="0" max="2" step="1">
+            <span class="font-weight-bold ml-2" id="month">April</span>
+          </div>
+
         </div>
-        <div class="col-5">
-          
+        <!-- second component -->
+        <div class="component2 ">
+          <div id="main_map"></div>
+        </div>
+      </div>
+      <!--second row: third and fourth component -->
+      <div class="row2">
+        <div class="component3">
+          <div id="parallel"></div>
+        </div>
+        <div class="component4">
+          <div id="time_series"></div>
         </div>
       </div>
 
-       <div class="row">
-        <div class="col-6">
-          <div id="parallel"></div>
-        </div>
-        <div class="col-6">
-           <div id="time_series"></div>
-        </div>
-      </div>
-    </div>
+  </div>
 
 
     <script src="http://d3js.org/d3.v4.min.js" charset="utf-8"></script>
