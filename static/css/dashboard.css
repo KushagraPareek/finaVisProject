@@ -34,5 +34,12 @@ input[type=range]::-ms-thumb {
   fill: none;
   stroke-width: 2px;
 }
-
-
+.axis {
+    opacity: 0.4;
+}
+.axis:hover {
+opacity: 1;
+}
+.yellow{
+    background-color: yellow;
+}

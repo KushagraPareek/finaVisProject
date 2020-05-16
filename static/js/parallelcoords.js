@@ -1,12 +1,11 @@
 
-
 // set the dimensions and margins of the graph
 var margin = {top: 30, right: 50, bottom: 10, left: 50},
   width = 460 - margin.left - margin.right,
   height = 400 - margin.top - margin.bottom;
 
 // append the svg object to the body of the page
-var svg = d3.select("#parallelcoords")
+var svg = d3.select("#parallel")
 .append("svg")
   .attr("width", width + margin.left + margin.right)
   .attr("height", height + margin.top + margin.bottom)
@@ -15,8 +14,8 @@ var svg = d3.select("#parallelcoords")
         "translate(" + margin.left + "," + margin.top + ")");
 
 // Parse the Data
-d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/iris.csv", function(data) {
-
+d3.csv("/Users/nikitagupta/Desktop/semester 2/Visualization/final project/finaVisProject/static/data/ParallelCoordsData.csv", function(data) {
+    console.log(data[0])
   // Color scale: give me a specie name, I return a color
   var color = d3.scaleOrdinal()
     .domain(["setosa", "versicolor", "virginica" ])
@@ -102,5 +101,3 @@ d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/ir
       .style("fill", "black")
 
 })
-
-
