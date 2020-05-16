@@ -1,4 +1,6 @@
-var viewportWidth = $(window).width();
-var viewportHeight = $(window).height()/2;
-var width = viewportWidth *0.33;
+var viewportWidth =  window.screen.width;
+var viewportHeight = window.screen.height;
+console.log(viewportWidth)
+console.log(viewportHeight)
+var width = viewportWidth *0.45;
 var height = width/1.75;

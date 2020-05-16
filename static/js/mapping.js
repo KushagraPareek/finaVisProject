@@ -18,7 +18,8 @@ var svg_main_map = d3.select( "#main_map" )
     .append( "svg" )
     .attr("id","ny_map")
     .attr("preserveAspectRatio", "xMinYMin meet")
-    .attr("viewBox", "0 0"+" "+width+" "+height);
+    .attr( "width", width )
+    .attr( "height", height );
 
 var group_main_map = svg_main_map.append( "g" );
 
