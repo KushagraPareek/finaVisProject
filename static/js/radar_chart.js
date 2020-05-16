@@ -1,4 +1,5 @@
 let data = [];
+url = "https://raw.githubusercontent.com/KushagraPareek/finaVisProject/master/static/data/radar_data.csv?token=AF677XNWYKZDZBDGT2MOJC26ZFBV6"
 let features = ["A","B","C","D","E","F"];
 //generate the data
 for (var i = 0; i < 3; i++){
