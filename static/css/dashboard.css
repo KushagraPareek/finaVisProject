@@ -4,10 +4,6 @@
     margin-left: 0;
 }
 
-.attributes_sel{
-    flex: 3;
-}
-
 input[type=range]::-webkit-slider-thumb {
     background: red;
 }
@@ -25,7 +21,7 @@ input[type=range]::-ms-thumb {
 
 #dimensions{
  
- margin-top:40px;
+ margin-top:25%;
  font-family:monospace; 
 
 }
