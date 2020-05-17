@@ -5,18 +5,25 @@ function unpack_county_data(data, county){
     return countydata
 }
 
-let colors = ["#2471A3", "#82E0AA", "#E74C3C"];
+let colors = ["blue", "#82E0AA", "#E74C3C"];
 
 console.log("variables: ",height, width)
 
 $.get('/radardata', function(fetched)
   {
     data = JSON.parse(fetched)
-    
+
     // unpacking data according to counties selected
     let county1 = unpack_county_data(data, 'county1')
     let county2 = unpack_county_data(data, 'county2')
     let county3 = unpack_county_data(data, 'county3')
+
+    let counties_selected = []
+    counties_selected.push(county1['County'])
+    counties_selected.push(county2['County'])
+    counties_selected.push(county3['County'])
+
+    console.log(counties_selected)
 
     let features = d3.keys(county1)
     features.shift();
@@ -27,17 +34,17 @@ $.get('/radardata', function(fetched)
     console.log(county3)
     console.log(features)
 
-    generate_radar(county1, county2, county3, features)
+    generate_radar(county1, county2, county3, features, counties_selected)
 })
 
 console.log("variables: ",height, width)
 height = height/2 //window height/2
 width = height //width = height as we require a square.
 // function to generate radar chart
-function generate_radar(county1, county2, county3, features){
+function generate_radar(county1, county2, county3, features, counties_selected){
     //setting the svg
     let svg2 = d3.select("#radar").append("svg")
-        .attr("width", 2*width+10)
+        .attr("width", 2*width+20)
         .attr("height", 2*height+5);
     console.log("svg created")
     console.log(svg2)
@@ -95,7 +102,7 @@ function generate_radar(county1, county2, county3, features){
     
     //draw axis label
     svg2.append("text")
-    .attr("x", label_coordinate.x-40)
+    .attr("x", label_coordinate.x-50)
     .attr("y", label_coordinate.y+10)
     .text(ft_name);
 
@@ -138,6 +145,50 @@ function generate_radar(county1, county2, county3, features){
         .attr("opacity", opacity);
     
     }
+    addLegend(svg2, counties_selected)
+}
+
+
+
+function addLegend(svg2, counties_selected)
+{
+    //adding legend
+    // adding the legend
+    var legend;
+    var legendobj ={}
+    legendobj[counties_selected[0]]= colors[0],
+    legendobj[counties_selected[1]]= colors[1], 
+    legendobj[counties_selected[2]]= colors[2]
+    var legendnames = [counties_selected[0],counties_selected[1], counties_selected[2]]
+
+    console.log("legendobj", legendobj)
+
+  legend = svg2.selectAll(".legend")
+  .data(legendnames)
+  .enter()
+  .append("g")
+  .attr("class","legend")
+  .attr("transform", function(d,i){
+    return "translate(0,"+i*18+")";
+  });
+
+    
+  legend.append("rect")
+        .attr("x", 2*width-70)
+        .attr("width", 16)
+        .attr("height", 16)
+        .style("fill",function(d){ m = d; return legendobj[m] })
+        .style("padding", 20)
+
+
+  legend.append("text")
+  .attr("x", 2*width-50)
+  .attr("y", 9)
+  .attr("dy", ".30em")
+  .style("text-anchor","start")
+  .text(function(d){ return d;});
+
+
 }
 
 

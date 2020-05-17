@@ -64,9 +64,9 @@ def timeDataFull():
 def radardata():
     #if request.method == 'POST':
         #county = request.form['county']
-    county1="Albany"
+    county1="Suffolk"
     county2="Kings"
-    county3="Nassau"
+    county3="New York"
     county1_data = radar_data[radar_data['County'] == county1]
     county2_data = radar_data[radar_data['County'] == county2]
     county3_data = radar_data[radar_data['County'] == county3]
