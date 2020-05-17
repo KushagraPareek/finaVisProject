@@ -2,7 +2,11 @@
   <html lang="en">
     <head>
       <meta charset="utf-8">
+<<<<<<< HEAD
      
+=======
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
+>>>>>>> a48e0882f902899307f6ac2a3b8b82b23ee0f20e
       <title>COVID-19 DashBoard</title>
       <link rel="stylesheet" href="../static/css/dashboard.css">
       <link rel="stylesheet" href="../static/css/simple_grid.css">
@@ -11,7 +15,7 @@
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 
     </head>
-    <body >
+    <body class="container-fluid">
       <!-- navbar -->
       <nav class="navbar navbar-dark bg-primary">
         <div class="container-fluid">
