@@ -1,7 +1,7 @@
 
-var margin = {top: 30, right: 60, bottom: 50, left: 60};
+
 width_comp4  = width - margin.right;
-height_comp4 = height - margin.bottom;
+height_comp4 = height/2 - margin.bottom;
 
 
 var svg_time_series = d3.select( "#time_series" )
@@ -16,13 +16,20 @@ var g_time_series = svg_time_series.append("g")
                                    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 
+var line_tooltip = d3.select("#time_series")
+                    .append("div")
+                    .attr("class","tooltip")
+                    .style("background-color", "black")
+                    .style("color", "white")
+                    .style("border-radius", "5px")
+                    .style("padding", "10px");
+
+
 var xRange = d3.scaleTime()
         .rangeRound([0, width_comp4]);
 
 var yRange = d3.scaleLinear()
     .range([height_comp4, 0]);
-
-
 
 
 var valueline = d3.line()
@@ -35,7 +42,18 @@ var valueline2 = d3.line()
     .y(function(d) { return yRange(d[2]); });
 
 
-var parseTime = d3.timeParse("%m/%d/%Y");
+function get_data_positive(d){
+
+  return "Date: "+d[0]+"<br>"+
+         "Cases: "+d[1]+"<br>";
+}
+
+
+function get_data_test(d){
+
+  return "Date: "+d[0]+"<br>"+
+         "Tests: "+d[2]+"<br>";
+}
 
 function appendScales(){
 
@@ -48,7 +66,7 @@ g_time_series.append("g")
 
 g_time_series.append("g")
       .attr("class", "axis")
-      .call(d3.axisLeft(yRange))
+      .call(d3.axisLeft(yRange).ticks(5))
       .append("text")
       .attr("x",2)
       .attr("y", 6)
@@ -80,24 +98,73 @@ yRange.domain([0, d3.max(temp)]);
 
 }
 
+
+
 function appendLine(data){
 
   g_time_series.append("path")
       .data([data])
       .attr("class", "line")
       .style("stroke", "red")
-      .attr("d", valueline);
+      .attr("d", valueline)
 
-  
-  g_time_series.append("path")
+
+ g_time_series.append("path")
       .data([data])
       .attr("class", "line")
       .style("stroke", "steelblue")
-      .attr("d", valueline2);
+      .attr("d", valueline2)
+    
+ g_time_series.selectAll("dot")	
+        .data(data)			
+        .enter().append("circle")
+        .attr("class","anchors")								
+        .attr("r", 5)		
+        .attr("cx", function(d) { return xRange(parseTime(d[0])); })		 
+        .attr("cy", function(d) { return yRange(d[1]); }) 
+        .style("opacity",0)
+        .style("fill","red")
+        .on("mouseover", function(d){
+               d3.select(this).style("opacity",1);
+               showTooltip(line_tooltip,get_data_positive(d));
+            })
+        .on("mousemove", function(d){
+               moveTooltip(line_tooltip);
+            })
+        .on("mouseleave", function(d){
+               d3.select(this).style("opacity",0);
+               hideTooltip(line_tooltip);
+            }); 
+
+  g_time_series.selectAll("dot")	
+        .data(data)			
+        .enter().append("circle")
+        .attr("class","anchors")								
+        .attr("r", 5)		
+        .attr("cx", function(d) { return xRange(parseTime(d[0])); })		 
+        .attr("cy", function(d) { return yRange(d[2]); }) 
+        .style("opacity",0)
+        .style("fill","steelblue")
+        .on("mouseover", function(d){
+               d3.select(this).style("opacity",1);
+               showTooltip(line_tooltip,get_data_test(d));
+               
+            })
+        .on("mousemove", function(d){
+               moveTooltip(line_tooltip);
+            })
+        .on("mouseleave", function(d){
+               d3.select(this).style("opacity",0);
+               hideTooltip(line_tooltip);
+            }); 
 
 }
 
+
 function plotTimeSeries(data){
+
+
+   remover(g_time_series);
 
    graph = JSON.parse(data);
    data  = graph.time_data;

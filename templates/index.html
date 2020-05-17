@@ -2,7 +2,7 @@
   <html lang="en">
     <head>
       <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+     
       <title>COVID-19 DashBoard</title>
       <link rel="stylesheet" href="../static/css/dashboard.css">
       <link rel="stylesheet" href="../static/css/simple_grid.css">
@@ -24,7 +24,7 @@
      <div class="main-container">
       <div class="row1">
         <!-- first component -->
-        <div class = "component1 shadow p-3 mb-5 bg-white rounded">
+        <div class = "component1">
           <!-- dividing into two rows: first has map and legend, second has slider -->
           <div class="row11">
             <div id="main_map"></div>
@@ -53,7 +53,10 @@
           <div id="parallel"></div>
         </div>
         <div class="component4">
+         <div>
+          <div id="time_series_upper"></div>
           <div id="time_series"></div>
+         </div>
         </div>
       </div>
 
@@ -66,6 +69,7 @@
       <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
       <script src="../static/data/new_york.geojson"></script>
       <script src=../static/js/variables.js></script>
+      <script src=../static/js/timeSeriesUpper.js></script>
       <script src=../static/js/timeSeries.js></script>
       <script src=../static/js/mapping.js></script>
       <script src=../static/js/parallelcoords.js></script>

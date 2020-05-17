@@ -44,5 +44,18 @@ def timeData():
         cases_county = cases_month[cases_month['county']  == county]
         time_data = list(zip(cases_county['test_date'].to_list(),
                               cases_county['positives'].to_list(),cases_county['total_tests'].to_list()))
+
+        return json.dumps({'time_data':time_data})
+
+
+
+@app.route('/timeDataFull', methods=["GET","POST"])
+def timeDataFull():
+    if request.method == 'POST':
+        county = request.form['county']
+        cases_county = cases_data[cases_data['county']  == county]
+        time_data = list(zip(cases_county['test_date'].to_list(),
+                              cases_county['positives'].to_list(),cases_county['total_tests'].to_list()))
+
         return json.dumps({'time_data':time_data})
 
