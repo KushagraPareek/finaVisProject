@@ -20,13 +20,13 @@ color_map.domain([0,100000]);
 var svg_main_map = d3.select( "#main_map" )
     .append( "svg" )
     .attr("id","ny_map")
-    .attr( "width", width )
-    .attr( "height", height );
+    .attr( "width", width+10)
+    .attr( "height", height+10);
 
 var group_main_map = svg_main_map.append( "g" );
 
 var albersProjection = d3.geoAlbers()
-    .scale( width*6 )
+    .scale( width*8 )
     .rotate( [75.527,0] )
     .center( [0,42.954] )
     .translate( [width/2,height/2] );

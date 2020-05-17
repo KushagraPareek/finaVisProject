@@ -33,7 +33,9 @@
     flex: 4;
 }
 .attributes_sel{
-    flex: 3;
+    flex: 1;
+    font-size: larger;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
 }
 
 #slider{
@@ -81,9 +83,23 @@ input[type=range]::-ms-thumb {
     background: red;
 }
 
-#month{
+input[type='radio']{
+    transform: scale(1.5);
+    padding-right: 4px;
+    background-color: darkseagreen;
+}
 
- color:red;
+input[type='radio']:checked{
+    transform: scale(1.5);
+    padding-right: 4px;
+    background-color: red;
+    
+}
+
+#month{
+    font-size: larger;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color:red;
 }
 
 #dimensions{

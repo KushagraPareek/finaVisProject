@@ -183,32 +183,28 @@ function addLegend(svg2, counties_selected)
 
     console.log("legendobj", legendobj)
 
-  legend = svg2.selectAll(".legend")
-  .data(legendnames)
-  .enter()
-  .append("g")
-  .attr("class","legend")
-  .attr("transform", function(d,i){
-    return "translate(0,"+i*18+")";
-  });
+    legend = svg2.selectAll(".legend")
+    .data(legendnames)
+    .enter()
+    .append("g")
+    .attr("class","legend")
+    .attr("transform", function(d,i){
+        return "translate(0,"+i*18+")";
+    });
 
-    
-  legend.append("rect")
-        .attr("x", 2*width-70)
-        .attr("width", 16)
-        .attr("height", 16)
-        .style("fill",function(d){ m = d; return legendobj[m] })
-        .style("padding", 20)
+    legend.append("rect")
+            .attr("x", 2*width-70)
+            .attr("width", 16)
+            .attr("height", 16)
+            .style("fill",function(d){ m = d; return legendobj[m] })
+            .style("padding", 20)
 
-
-  legend.append("text")
-  .attr("x", 2*width-50)
-  .attr("y", 9)
-  .attr("dy", ".30em")
-  .style("text-anchor","start")
-  .text(function(d){ return d;});
-
-
+    legend.append("text")
+    .attr("x", 2*width-50)
+    .attr("y", 9)
+    .attr("dy", ".30em")
+    .style("text-anchor","start")
+    .text(function(d){ return d;});
 }
 
 
