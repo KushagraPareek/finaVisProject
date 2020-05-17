@@ -135,7 +135,7 @@ function generate_radar(county1, county2, county3, features, counties_selected){
         let coordinates = getPathCoordinates(d);
     
         //draw the path element
-        svg2.append("path")
+        var polygon = svg2.append("path")
         .datum(coordinates)
         .attr("d",line)
         .attr("stroke-width", 3)
@@ -143,7 +143,28 @@ function generate_radar(county1, county2, county3, features, counties_selected){
         .attr("fill", color)
         .attr("stroke-opacity", 1)
         .attr("opacity", opacity);
-    
+
+        // adding hover effect
+        polygon.on("mouseover", function(d) { console.log("on mouse over", i); d3.select(this).attr("opacity",1)})
+        //restoring back to normal
+        polygon.on("mouseout", function(d) { console.log("on mouse over", i); d3.select(this).attr("opacity",opacity)})
+
+        console.log(coordinates)
+
+        for(let j= 0; j < coordinates.length; j++){
+            console.log(coordinates[j])
+            draw_points(coordinates[j])
+        }
+        //appending circles at the points on axes
+        function draw_points(coordinate){
+            console.log(coordinate)
+                svg2.append("circle")
+                .datum(coordinate)
+                .attr("cx", function(d){ return d.x})
+                .attr("cy", function(d){ return d.y})
+                .attr("r", 6)
+                .attr("fill", color)
+            }
     }
     addLegend(svg2, counties_selected)
 }
@@ -152,7 +173,6 @@ function generate_radar(county1, county2, county3, features, counties_selected){
 
 function addLegend(svg2, counties_selected)
 {
-    //adding legend
     // adding the legend
     var legend;
     var legendobj ={}
