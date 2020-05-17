@@ -12,6 +12,7 @@
     margin-top:20px;
     margin-left: 4px;
     align-items: flex-start;
+    flex: 2
 }
 .component1{
     flex: 2;
@@ -49,12 +50,14 @@
     width: 100%;
     display: flex;
     margin-top:20px;
+    flex: 3
 }
 .component3{
     flex: 3;
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 100%;
 }
 .component4{
     flex: 2;
@@ -102,4 +105,9 @@ opacity: 1;
 } */
 .yellow{
     background-color: yellow;
+}
+#radar{padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

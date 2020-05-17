@@ -1,7 +1,7 @@
 var viewportWidth =  window.screen.width;
 var viewportHeight = window.screen.height;
 var width = viewportWidth *0.45;
-var height = width/1.75;
+var height = width/1.50;
 
 
 function remover(svg){
