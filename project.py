@@ -7,6 +7,7 @@ app = Flask(__name__)
 
 cases = pd.read_csv('static/data/testing_data.csv')
 cases.columns = ['test_month','county','positives','cum_positives','total_tests','cum_tests']
+radar_data = pd.read_csv('static/data/radardata.csv')
 
 @app.route('/')
 def hello_world():
@@ -59,3 +60,20 @@ def timeDataFull():
 
         return json.dumps({'time_data':time_data})
 
+@app.route('/radardata', methods =['GET','POST'])
+def radardata():
+    #if request.method == 'POST':
+        #county = request.form['county']
+    county1="Albany"
+    county2="Kings"
+    county3="Nassau"
+    county1_data = radar_data[radar_data['County'] == county1]
+    county2_data = radar_data[radar_data['County'] == county2]
+    county3_data = radar_data[radar_data['County'] == county3]
+    data = {}
+    data['county1'] = county1_data.to_json(orient='records')
+    data['county2'] = county2_data.to_json(orient='records')
+    data['county3'] = county3_data.to_json(orient='records')
+    print(data)
+    return json.dumps(data) 
+    #county1_data.to_json(orient='records')
