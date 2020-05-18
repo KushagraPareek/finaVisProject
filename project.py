@@ -65,8 +65,7 @@ def timeDataFull():
 @app.route('/compareCounties', methods=["GET","POST"])
 def compareCountie():
     if request.method == 'POST':
-        time_data = list(zip(case_load_data['County'].to_list(),
-                              case_load_data['TotalPositives'].to_list(),case_load_data['CaseLoad'].to_list()))
+        time_data = list(zip(case_load_data['County'].to_list(),case_load_data['CaseLoad'].to_list()))
 
         return json.dumps({'time_data':time_data})
 
@@ -75,7 +74,6 @@ def radar():
     if request.method == 'POST':
         search = request.get_json()
         counties = search['selected_counties_name']
-        print("counties: ",counties)
         county1=counties[0]
         county2=counties[1]
         county3=counties[2]
@@ -86,5 +84,4 @@ def radar():
         data['county1'] = county1_data.to_json(orient='records')
         data['county2'] = county2_data.to_json(orient='records')
         data['county3'] = county3_data.to_json(orient='records')
-        print(data)
         return data 

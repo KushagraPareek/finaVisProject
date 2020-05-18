@@ -5,7 +5,7 @@ function unpack_county_data(data, county){
     return countydata
 }
 
-let colors = ["blue", "#82E0AA", "#E74C3C"];
+let colors = ["magenta", "#82E0AA", "#E74C3C"];
 
 //console.log("variables: ",height, width)
 function plot_radar(data){

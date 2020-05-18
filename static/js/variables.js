@@ -3,7 +3,6 @@ var viewportHeight = window.screen.height;
 var viewwidth = viewportWidth *0.45;
 var viewheight = viewwidth/1.5;
 
-console.log("window height:", viewheight, " width:", viewwidth)
 
 function remover(svg){
 

@@ -9,9 +9,11 @@ var selectedObjects = []
 
 window.onload = function() {
   initMap = false;
+ 
   colorpleth(startMonth);
   getTimeSeries(startMonth,selectedCounty);
   getTimeSeries_Full(selectedCounty);
+  compareCounties();
   
 };
 
@@ -30,7 +32,7 @@ var color_map_test = d3.scaleQuantile()
 
 color_map_test.domain([0,80000]);
 
-console.log("in map, height:", height*2, "width", width*2)
+
 var svg_main_map = d3.select( "#main_map" )
     .append( "svg" )
     .attr("id","ny_map")
@@ -42,7 +44,7 @@ var group_main_map = svg_main_map.append( "g" );
 
 
 var albersProjection = d3.geoAlbers()
-    .scale( width*25)
+    .scale( viewwidth*6)
     .rotate( [75.527,0] )
     .center( [0,42.954] )
     .translate( [viewwidth/2,viewheight/2] );
@@ -81,7 +83,7 @@ function setChecked(){
 }
 function clear_selected(){
 
-    console.log("clear_selected");
+    
     for(let i=0;i<selectedObjects.length;i++){
        
          d3.select(selectedObjects[i])
@@ -200,10 +202,11 @@ function createMap_cases(){
 
                if(selected_counties_name.length == 3){
                     
-                  console.log("selected counties: ", selected_counties_name)
+                  
                     //call radar function from here
-                    getRadarData(selected_counties_name)
-                    setTimeout(clear_selected,3000);
+                    getRadarData(selected_counties_name);
+                    trasitionOnSelection(selected_counties_name);
+                    clear_selected();
                }
             }
             else{
@@ -289,8 +292,21 @@ $.post("/timeDataFull",{'county':county},function(data){
  });
 
 }
+
+
+function compareCounties(){
+
+$.post("/compareCounties",function(data){
+ 
+  
+   plotHorizontalBar(data);
+   
+
+ });
+
+}
 function getRadarData(selected_counties_name){
-   console.log(selected_counties_name)
+  
 
    $.ajax({
       type: "POST",
@@ -303,5 +319,5 @@ function getRadarData(selected_counties_name){
           plot_radar(data)
       }
   });
-      console.log("posting data")
+      
 }

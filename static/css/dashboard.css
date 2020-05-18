@@ -1,7 +1,8 @@
 .navbar{
-    height: 25% ;
+    height: 10% ;
     margin-top: 0;
     margin-left: 0;
+    
 }
 .main-container{
     padding-left: 5%;
@@ -119,12 +120,7 @@ input[type='radio']:checked{
   fill: none;
   stroke-width: 2px;
 }
-/* .axis {
-    opacity: 0.4;
-}
-.axis:hover {
-opacity: 1;
-} */
+
 .yellow{
     background-color: yellow;
 }
@@ -144,3 +140,8 @@ opacity: 1;
     justify-content: center;
     background-color: deepskyblue;
 }
+
+.bar {
+            fill: steelblue;
+}
+        
