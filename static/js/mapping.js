@@ -42,7 +42,7 @@ var group_main_map = svg_main_map.append( "g" );
 
 
 var albersProjection = d3.geoAlbers()
-    .scale( width*25)
+    .scale( width*8)
     .rotate( [75.527,0] )
     .center( [0,42.954] )
     .translate( [viewwidth/2,viewheight/2] );
