@@ -56,18 +56,19 @@
 .row2{
     width: 100%;
     display: flex;
-    margin-top:20px;
-    flex: 3;
+ 
+    flex: 2;
 }
 .component3{
-    flex: 3;
+    flex: 2;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: darkmagenta;
    /* height: 100%; */
 }
 .component4{
-    flex: 2;
+    flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -134,4 +135,14 @@ opacity: 1;
     display: flex;
     align-items: center;
     justify-content: center;
+    flex: 2;
+    width: 100%;
+    height: 100%;
+    background-color: darkorange;
+}
+#barchart{
+    flex:1;
+    background-color: darkseagreen;
+    width: 100%;
+    height: 100%;
 }

@@ -30,21 +30,22 @@ var color_map_test = d3.scaleQuantile()
 
 color_map_test.domain([0,80000]);
 
+console.log("in map, height:", height*2, "width", width*2)
 var svg_main_map = d3.select( "#main_map" )
     .append( "svg" )
     .attr("id","ny_map")
-    .attr( "width", width*2)
-    .attr( "height", height*2);
+    .attr( "width", viewwidth)
+    .attr( "height", viewheight);
 
 var group_main_map = svg_main_map.append( "g" );
 
 
 
 var albersProjection = d3.geoAlbers()
-    .scale( width*20)
+    .scale( width*25)
     .rotate( [75.527,0] )
     .center( [0,42.954] )
-    .translate( [width,height] );
+    .translate( [viewwidth/2,viewheight/2] );
 
 var geoPath = d3.geoPath()
     .projection( albersProjection );

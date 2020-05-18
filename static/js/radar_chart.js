@@ -41,8 +41,11 @@ function plot_radar(data){
 
 
 //console.log("variables: ",height, width)
-height = height/2 //window height/2
+height = viewheight/2 //window height/2
 width = height //width = height as we require a square.
+
+console.log("in radar, height:", height, "width", width)
+
 // function to generate radar chart
 function generate_radar(county1, county2, county3, features, counties_selected){
     //remove all previously made radar charts

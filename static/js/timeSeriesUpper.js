@@ -1,7 +1,7 @@
 var margin   = {top: 30, right: 60, bottom: 50, left: 60};
 
-width_comp4_upper  = width - margin.right;
-height_comp4_upper = height/2 - margin.bottom;
+width_comp4_upper  = viewwidth - margin.right;
+height_comp4_upper = viewheight/2 - margin.bottom;
 
 
 

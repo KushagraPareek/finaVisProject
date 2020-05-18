@@ -1,7 +1,7 @@
 
 
-width_comp4  = width - margin.right;
-height_comp4 = height/2 - margin.bottom;
+width_comp4  = viewwidth - margin.right;
+height_comp4 = viewheight/2 - margin.bottom;
 
 
 var svg_time_series = d3.select( "#time_series" )
