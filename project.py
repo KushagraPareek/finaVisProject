@@ -8,6 +8,7 @@ app = Flask(__name__)
 cases = pd.read_csv('static/data/testing_data.csv')
 cases.columns = ['test_month','county','positives','cum_positives','total_tests','cum_tests']
 radar_data = pd.read_csv('static/data/radardata.csv')
+case_load_data = pd.read_csv('static/data/radar_data.csv')
 
 @app.route('/')
 def hello_world():
@@ -57,6 +58,15 @@ def timeDataFull():
         cases_county = cases_data[cases_data['county']  == county]
         time_data = list(zip(cases_county['test_date'].to_list(),
                               cases_county['positives'].to_list(),cases_county['total_tests'].to_list()))
+
+        return json.dumps({'time_data':time_data})
+
+
+@app.route('/compareCounties', methods=["GET","POST"])
+def compareCountie():
+    if request.method == 'POST':
+        time_data = list(zip(case_load_data['County'].to_list(),
+                              case_load_data['TotalPositives'].to_list(),case_load_data['CaseLoad'].to_list()))
 
         return json.dumps({'time_data':time_data})
 

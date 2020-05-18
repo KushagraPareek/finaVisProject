@@ -74,13 +74,13 @@
     fill: red;   
 }
 input[type=range]::-webkit-slider-thumb {
-    background: red;
+    background: black;
 }
 input[type=range]::-moz-range-thumb {
-    background: red;
+    background: black;
 }
 input[type=range]::-ms-thumb {
-    background: red;
+    background: black;
 }
 
 input[type='radio']{

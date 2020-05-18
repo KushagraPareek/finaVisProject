@@ -7,7 +7,7 @@ function unpack_county_data(data, county){
 
 let colors = ["blue", "#82E0AA", "#E74C3C"];
 
-console.log("variables: ",height, width)
+//console.log("variables: ",height, width)
 
 $.get('/radardata', function(fetched)
   {
@@ -29,15 +29,15 @@ $.get('/radardata', function(fetched)
     features.shift();
     features.shift();
 
-    console.log(county1)
-    console.log(county2)
-    console.log(county3)
-    console.log(features)
+    //console.log(county1)
+    //console.log(county2)
+    //console.log(county3)
+    //console.log(features)
 
     generate_radar(county1, county2, county3, features, counties_selected)
 })
 
-console.log("variables: ",height, width)
+//console.log("variables: ",height, width)
 height = height/2 //window height/2
 width = height //width = height as we require a square.
 // function to generate radar chart
@@ -46,15 +46,15 @@ function generate_radar(county1, county2, county3, features, counties_selected){
     let svg2 = d3.select("#radar").append("svg")
         .attr("width", 2*width+20)
         .attr("height", 2*height+5);
-    console.log("svg created")
-    console.log(svg2)
+    //console.log("svg created")
+    //console.log(svg2)
     // setting the radial scale
     let radialScale = d3.scaleLinear()
     .domain([0,1])
     .range([0,(height-50)]);
     let ticks = [0.2,0.4,0.6,0.8,1.0];
 
-    console.log("height:",height, "width", width)
+    //console.log("height:",height, "width", width)
     //set circles
     ticks.forEach(t =>
     svg2.append("circle")
@@ -152,12 +152,12 @@ function generate_radar(county1, county2, county3, features, counties_selected){
         console.log(coordinates)
 
         for(let j= 0; j < coordinates.length; j++){
-            console.log(coordinates[j])
+            //console.log(coordinates[j])
             draw_points(coordinates[j])
         }
         //appending circles at the points on axes
         function draw_points(coordinate){
-            console.log(coordinate)
+            //console.log(coordinate)
                 svg2.append("circle")
                 .datum(coordinate)
                 .attr("cx", function(d){ return d.x})
@@ -181,7 +181,7 @@ function addLegend(svg2, counties_selected)
     legendobj[counties_selected[2]]= colors[2]
     var legendnames = [counties_selected[0],counties_selected[1], counties_selected[2]]
 
-    console.log("legendobj", legendobj)
+    //console.log("legendobj", legendobj)
 
     legend = svg2.selectAll(".legend")
     .data(legendnames)
