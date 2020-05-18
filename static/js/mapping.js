@@ -9,7 +9,6 @@ var selectedObjects = []
 
 window.onload = function() {
   initMap = false;
- 
   colorpleth(startMonth);
   getTimeSeries(startMonth,selectedCounty);
   getTimeSeries_Full(selectedCounty);
@@ -211,7 +210,8 @@ function createMap_cases(){
             }
             else{
                getTimeSeries_Full(d.properties.name);
-               getTimeSeries(startMonth,d.properties.name)
+               getTimeSeries(startMonth,d.properties.name);
+               getScatterPlot(d.properties.name);
             }
         });
 
@@ -304,6 +304,11 @@ $.post("/compareCounties",function(data){
 
  });
 
+}
+function getScatterPlot(county){
+   $.post("/scatterdata", {'county': county}, function(data){
+      plotScatter(data)
+   })
 }
 function getRadarData(selected_counties_name){
   

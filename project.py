@@ -9,6 +9,8 @@ cases = pd.read_csv('static/data/testing_data.csv')
 cases.columns = ['test_month','county','positives','cum_positives','total_tests','cum_tests']
 radar_data = pd.read_csv('static/data/radardata.csv')
 case_load_data = pd.read_csv('static/data/radar_data.csv')
+scatter_data = pd.read_csv('static/data/scatter_data.csv')
+scatter_data = scatter_data.rename(columns = {"Test Date": "date"}) 
 
 @app.route('/')
 def hello_world():
@@ -49,8 +51,6 @@ def timeData():
 
         return json.dumps({'time_data':time_data})
 
-
-
 @app.route('/timeDataFull', methods=["GET","POST"])
 def timeDataFull():
     if request.method == 'POST':
@@ -68,6 +68,16 @@ def compareCountie():
         time_data = list(zip(case_load_data['County'].to_list(),case_load_data['CaseLoad'].to_list()))
 
         return json.dumps({'time_data':time_data})
+
+
+@app.route('/scatterdata', methods= ["GET", "POST"])
+def scatterData():
+    if request.method == 'POST':
+        county = request.form['county']
+        data = scatter_data[scatter_data['County']== county]
+        print(county, data)
+        data = list(zip(data['date'].to_list(),data['CaseLoad'].to_list()))
+        return json.dumps({'data':data})
 
 @app.route('/radar', methods =['GET','POST'])
 def radar():
