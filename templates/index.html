@@ -11,7 +11,7 @@
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 
     </head>
-    <body >
+    <body scroll="no" style="overflow: hidden" >
       <!-- navbar -->
       <nav class="navbar navbar-dark bg-primary">
         <div class="container-fluid">
@@ -32,8 +32,8 @@
               <form id="dimensions">
                 <input  type='radio'  id="positive" name="mode"  checked> Positive cases</input><br>
                 <input  type='radio'  id="test"    name="mode" > Total tests</input><br>
-              </form>
-              <input type="checkbox" id="myCheck" onclick="setChecked()"> Compare</input>
+            </form>
+            <input type="checkbox" id="myCheck" onclick="setChecked()"> Compare</input>
             </div>
           </div>
 
@@ -72,9 +72,9 @@
       <script src=../static/js/variables.js></script>
       <script src=../static/js/timeSeriesUpper.js></script>
       <script src=../static/js/timeSeries.js></script>
+      <script src=../static/js/radar_chart.js></script>
       <script src=../static/js/mapping.js></script>
       <!-- <script src=../static/js/parallelcoords.js></script> -->
-      <script src=../static/js/radar_chart.js></script>
       
 
     </script>	

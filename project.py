@@ -70,20 +70,21 @@ def compareCountie():
 
         return json.dumps({'time_data':time_data})
 
-@app.route('/radardata', methods =['GET','POST'])
-def radardata():
-    #if request.method == 'POST':
-        #county = request.form['county']
-    county1="Suffolk"
-    county2="Kings"
-    county3="New York"
-    county1_data = radar_data[radar_data['County'] == county1]
-    county2_data = radar_data[radar_data['County'] == county2]
-    county3_data = radar_data[radar_data['County'] == county3]
-    data = {}
-    data['county1'] = county1_data.to_json(orient='records')
-    data['county2'] = county2_data.to_json(orient='records')
-    data['county3'] = county3_data.to_json(orient='records')
-    print(data)
-    return json.dumps(data) 
-    #county1_data.to_json(orient='records')
+@app.route('/radar', methods =['GET','POST'])
+def radar():
+    if request.method == 'POST':
+        search = request.get_json()
+        counties = search['selected_counties_name']
+        print("counties: ",counties)
+        county1=counties[0]
+        county2=counties[1]
+        county3=counties[2]
+        county1_data = radar_data[radar_data['County'] == county1]
+        county2_data = radar_data[radar_data['County'] == county2]
+        county3_data = radar_data[radar_data['County'] == county3]
+        data = {}
+        data['county1'] = county1_data.to_json(orient='records')
+        data['county2'] = county2_data.to_json(orient='records')
+        data['county3'] = county3_data.to_json(orient='records')
+        print(data)
+        return data 

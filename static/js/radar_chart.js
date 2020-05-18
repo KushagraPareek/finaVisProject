@@ -8,11 +8,12 @@ function unpack_county_data(data, county){
 let colors = ["blue", "#82E0AA", "#E74C3C"];
 
 //console.log("variables: ",height, width)
-
-$.get('/radardata', function(fetched)
-  {
-    data = JSON.parse(fetched)
-
+function plot_radar(data){
+    //$.get('/radar', function(fetched){
+    console.log("in plot_radar")
+ //   console.log("data", fetched)
+    //let data = JSON.parse(fetched)
+    console.log("inside get radar", data)
     // unpacking data according to counties selected
     let county1 = unpack_county_data(data, 'county1')
     let county2 = unpack_county_data(data, 'county2')
@@ -35,7 +36,9 @@ $.get('/radardata', function(fetched)
     //console.log(features)
 
     generate_radar(county1, county2, county3, features, counties_selected)
-})
+
+}
+
 
 //console.log("variables: ",height, width)
 height = height/2 //window height/2
@@ -44,7 +47,7 @@ width = height //width = height as we require a square.
 function generate_radar(county1, county2, county3, features, counties_selected){
     //setting the svg
     let svg2 = d3.select("#radar").append("svg")
-        .attr("width", 2*width+20)
+        .attr("width", 2*width+25)
         .attr("height", 2*height+5);
     //console.log("svg created")
     //console.log(svg2)

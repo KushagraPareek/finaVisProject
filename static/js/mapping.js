@@ -30,22 +30,21 @@ var color_map_test = d3.scaleQuantile()
 
 color_map_test.domain([0,80000]);
 
-
 var svg_main_map = d3.select( "#main_map" )
     .append( "svg" )
     .attr("id","ny_map")
-    .attr( "width", width+10)
-    .attr( "height", height+10);
+    .attr( "width", width*2)
+    .attr( "height", height*2);
 
 var group_main_map = svg_main_map.append( "g" );
 
 
 
 var albersProjection = d3.geoAlbers()
-    .scale( width*8 )
+    .scale( width*20)
     .rotate( [75.527,0] )
     .center( [0,42.954] )
-    .translate( [width/2,height/2] );
+    .translate( [width,height] );
 
 var geoPath = d3.geoPath()
     .projection( albersProjection );
@@ -61,7 +60,7 @@ var map_tooltip = d3.select("#main_map")
                     .style("background-color", "black")
                     .style("color", "white")
                     .style("border-radius", "5px")
-                    .style("padding", "10px");
+                    .style("padding-left", "30px");
 
 d3.select("#slider").on("input", function() {
     update(+this.value);
@@ -200,8 +199,10 @@ function createMap_cases(){
 
                if(selected_counties_name.length == 3){
                     
+                  console.log("selected counties: ", selected_counties_name)
                     //call radar function from here
-                    setTimeout(clear_selected,1000);
+                    getRadarData(selected_counties_name)
+                    setTimeout(clear_selected,3000);
                }
             }
             else{
@@ -259,7 +260,6 @@ function colorpleth(month){
 
 $.post("/colorpleth",{'month':month},function(data){
  
-    
     integrateData(data);
     
         
@@ -272,7 +272,6 @@ function getTimeSeries(month,county){
 
 $.post("/timeData",{'month':month,'county':county},function(data){
  
-    
     plotTimeSeries(data)
   
 
@@ -288,4 +287,20 @@ $.post("/timeDataFull",{'county':county},function(data){
 
  });
 
+}
+function getRadarData(selected_counties_name){
+   console.log(selected_counties_name)
+
+   $.ajax({
+      type: "POST",
+      url: "radar",
+      data: JSON.stringify({ selected_counties_name } ),
+      contentType: "application/json; charset=utf-8",
+      dataType: "json",
+      success: function (data) {
+          alert(JSON.stringify(data));
+          plot_radar(data)
+      }
+  });
+      console.log("posting data")
 }
