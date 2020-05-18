@@ -45,10 +45,13 @@ height = height/2 //window height/2
 width = height //width = height as we require a square.
 // function to generate radar chart
 function generate_radar(county1, county2, county3, features, counties_selected){
+    //remove all previously made radar charts
+    d3.selectAll(".radar-chart").remove()
     //setting the svg
     let svg2 = d3.select("#radar").append("svg")
         .attr("width", 2*width+25)
-        .attr("height", 2*height+5);
+        .attr("height", 2*height+5)
+        .attr("class", "radar-chart");
     //console.log("svg created")
     //console.log(svg2)
     // setting the radial scale
