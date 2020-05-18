@@ -1,9 +1,10 @@
 
 // set the dimensions and margins of the graph
-var margin = {top: 20, right: 30, bottom: 40, left: 90},
-    width = 460 - margin.left - margin.right,
-    height = 400 - margin.top - margin.bottom;
+var margin = {top: 20, right: 10, bottom: 30, left: 100},
+    width = viewwidth - margin.left - margin.right,
+    height = viewheight - margin.top - margin.bottom;
 
+    console.log("svg width and height in barchart", width, height)
 // append the svg object to the body of the page
 var svg3 = d3.select("#barchart")
   .append("svg")
