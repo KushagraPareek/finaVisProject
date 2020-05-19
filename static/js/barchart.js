@@ -5,7 +5,7 @@ var margin_bar = {top: 20, right: 20, bottom: 30, left: 65},
     height_bar =  viewheight - margin_bar.top - margin_bar.bottom;
 
 
-var color_matcher = ["magenta", "#82E0AA", "#E74C3C"];
+var color_matcher = ["#4e79a7","#f28e2c","#e15759"]; 
 
 var y = d3.scaleBand()
           .range([height_bar, 0])
@@ -107,7 +107,7 @@ function clearSelection(){
       let bar = d3.select("#"+selected_county[i]);
        
        bar.transition()
-       .style('fill',"steelblue");
+       .style('fill',"#69b3a2");
   }
 
 

@@ -4,6 +4,12 @@
     margin-left: 0;
     
 }
+
+nav{
+
+ background-color:#69b3a2;
+
+}
 .main-container{
     padding-left: 5%;
     padding-right: 5%;
@@ -41,7 +47,8 @@
 .attributes_sel{
     flex: 1;
     font-size: larger;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+    font-family: monospace;
+    font-weight:bold;
 }
 
 #slider{
@@ -139,6 +146,6 @@ input[type='radio']:checked{
 }
 
 .bar {
-            fill: steelblue;
+            fill: #69b3a2;
 }
         
