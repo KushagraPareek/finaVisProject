@@ -65,13 +65,13 @@ function generate_radar(county1, county2, county3, features, counties_selected){
     .attr("stroke", "black")
     .attr("r", radialScale(t)/2));
 
-    height = height/2
-    width = width/2
+    newheight = height/2
+    newwidth = width/2
     //setting tick labels
     ticks.forEach(t =>
         svg2.append("text")
-        .attr("x", (width)+5)
-        .attr("y", ((height) - radialScale(t)))
+        .attr("x", (newwidth)+5)
+        .attr("y", ((newheight) - radialScale(t)))
         .text(t.toString())
     );
     
@@ -80,7 +80,7 @@ function generate_radar(county1, county2, county3, features, counties_selected){
         let x = Math.cos(angle) * radialScale(value);
         let y = Math.sin(angle) * radialScale(value);
       //  console.log("angle to coordinates: ",x,", ",y)
-        return {"x": (width) + x, "y": (height)- y};
+        return {"x": (newwidth) + x, "y": (newheight)- y};
     }
   
 
@@ -97,8 +97,8 @@ function generate_radar(county1, county2, county3, features, counties_selected){
 
     //draw axis line
     svg2.append("line")
-    .attr("x1", (width))
-    .attr("y1", (height))
+    .attr("x1", (newwidth))
+    .attr("y1", (newheight))
     .attr("x2", line_coordinate.x)
     .attr("y2", line_coordinate.y)
     .attr("stroke","black");
