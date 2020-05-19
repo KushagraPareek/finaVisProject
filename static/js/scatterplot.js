@@ -1,5 +1,5 @@
 // set the dimensions and margins of the graph
-var margin = {top: 20, right: 50, bottom: 30, left: 60},
+var margin = {top: 20, right: 120, bottom: 30, left: 60},
     width = viewwidth - margin.left - margin.right,
     height = viewheight - margin.top - margin.bottom;
 
@@ -129,14 +129,14 @@ function addLegendScatter(svg2, county)
     });
 
     legend.append("rect")
-            .attr("x", width-70)
+            .attr("x", width+20)
             .attr("width", 16)
             .attr("height", 16)
             .style("fill",function(d){ m = d; return legendobj[m] })
             .style("padding", 20)
 
     legend.append("text")
-    .attr("x", width-50)
+    .attr("x", width+40)
     .attr("y", 9)
     .attr("dy", ".30em")
     .style("text-anchor","start")
