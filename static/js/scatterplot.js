@@ -12,6 +12,8 @@ var svg5 = d3.select("#scatter")
     .attr("transform",
           "translate(" + margin.left + "," + margin.top + ")");
 
+
+
           //Read the data
 
 //default: plot New York County
@@ -106,6 +108,15 @@ function plotScatter(data){
             hideTooltip(line_tooltip);
          }); 
 
+    svg5.append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 0 - margin.left +15)
+      .attr("x",0 - (height / 2))
+      .attr("dy", "0.5em")
+      .style("text-anchor", "middle")
+      .text("case load"); 
+
+    
 
 }
 
