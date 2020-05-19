@@ -179,6 +179,7 @@ function addLegend(svg2, counties_selected)
     // adding the legend
     var legend;
     var legendobj ={}
+    
     legendobj[counties_selected[0]]= colors[0],
     legendobj[counties_selected[1]]= colors[1], 
     legendobj[counties_selected[2]]= colors[2]
