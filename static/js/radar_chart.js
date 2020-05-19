@@ -29,19 +29,11 @@ function plot_radar(data){
     let features = d3.keys(county1)
     features.shift();
     features.shift();
-
-    //console.log(county1)
-    //console.log(county2)
-    //console.log(county3)
-    //console.log(features)
-
     generate_radar(county1, county2, county3, features, counties_selected)
 
 }
 
-
-//console.log("variables: ",height, width)
-height = viewheight/2 //window height/2
+height = viewheight //window height/2
 width = height //width = height as we require a square.
 
 console.log("in radar, height:", height, "width", width)
@@ -52,8 +44,8 @@ function generate_radar(county1, county2, county3, features, counties_selected){
     d3.selectAll(".radar-chart").remove()
     //setting the svg
     let svg2 = d3.select("#radar").append("svg")
-        .attr("width", width)
-        .attr("height", height)
+        .attr("width", width+10)
+        .attr("height", height+15)
         .attr("class", "radar-chart");
     //console.log("svg created")
     //console.log(svg2)
@@ -67,12 +59,14 @@ function generate_radar(county1, county2, county3, features, counties_selected){
     //set circles
     ticks.forEach(t =>
     svg2.append("circle")
-    .attr("cx", width)
-    .attr("cy", height)
+    .attr("cx", width/2)
+    .attr("cy", height/2)
     .attr("fill", "none")
     .attr("stroke", "black")
-    .attr("r", radialScale(t)));
+    .attr("r", radialScale(t)/2));
 
+    height = height/2
+    width = width/2
     //setting tick labels
     ticks.forEach(t =>
         svg2.append("text")
@@ -94,8 +88,8 @@ function generate_radar(county1, county2, county3, features, counties_selected){
     for (var i = 0; i < features.length; i++) {
         let ft_name = features[i];
         let angle = (Math.PI / 2) + (2 * Math.PI * i / features.length);
-        let line_coordinate = angleToCoordinate(angle, 1.0);
-        let label_coordinate = angleToCoordinate(angle, 1.15);
+        let line_coordinate = angleToCoordinate(angle, 0.5);
+        let label_coordinate = angleToCoordinate(angle, 0.53);
 
         console.log("feature name: ", ft_name, "coords: ", label_coordinate)
 
