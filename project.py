@@ -71,13 +71,15 @@ def compareCountie():
 
 
 @app.route('/scatterdata', methods= ["GET", "POST"])
-def scatterData():
+def scatterdata():
     if request.method == 'POST':
         county = request.form['county']
         data = scatter_data[scatter_data['County']== county]
         print(county, data)
-        data = list(zip(data['date'].to_list(),data['CaseLoad'].to_list()))
-        return json.dumps({'data':data})
+        x ={}
+        x['data'] = data.to_json(orient="records")
+        #data = list(zip(data['date'].to_list(),data['CaseLoad'].to_list()))
+        return x
 
 @app.route('/radar', methods =['GET','POST'])
 def radar():
