@@ -2,7 +2,7 @@
     height: 10% ;
     margin-top: 0;
     margin-left: 0;
-    
+    font-size: x-large !important;
 }
 
 nav{
@@ -47,8 +47,8 @@ nav{
 .attributes_sel{
     flex: 1;
     font-size: larger;
-    font-family: monospace;
-    font-weight:bold;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    text-transform: capitalize;
 }
 
 #slider{
@@ -60,6 +60,9 @@ nav{
 
 .component2{
     flex:2;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
 }
 .row2{
     width: 100%;
@@ -122,6 +125,8 @@ input[type='radio']:checked{
 }
 #myCheck{
     transform: scale(1.5);
+    font-size: larger;
+    text-transform: capitalize;
 }
 .line {
   fill: none;
@@ -146,5 +151,5 @@ input[type='radio']:checked{
 }
 
 .bar {
-            fill: #69b3a2;
+    fill: #69b3a2;
 }
