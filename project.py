@@ -8,7 +8,7 @@ app = Flask(__name__)
 cases = pd.read_csv('static/data/testing_data.csv')
 cases.columns = ['test_month','county','positives','cum_positives','total_tests','cum_tests']
 radar_data = pd.read_csv('static/data/radardata.csv')
-case_load_data = pd.read_csv('static/data/radar_data.csv')
+case_load_data = pd.read_csv('static/data/caseload.csv')
 scatter_data = pd.read_csv('static/data/scatter_data.csv')
 scatter_data = scatter_data.rename(columns = {"Test Date": "date"}) 
 
