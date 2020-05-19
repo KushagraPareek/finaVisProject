@@ -149,6 +149,44 @@ function appendLine_upper(data){
 
 }
 
+//adding legend
+function addLegendTimeSeries(svg2)
+{
+    // adding the legend
+    var legend;
+    var legendobj ={}
+    legendobj['Positive Cases']= 'red',
+    legendobj['Total Tests Performed']= 'steelblue'
+    var legendnames = ['Positive Cases', 'Total Tests Performed']
+
+    //console.log("legendobj", legendobj)
+
+    legend = svg2.selectAll(".legendtests")
+    .data(legendnames)
+    .enter()
+    .append("g")
+    .attr("class","legendtests")
+    .attr("transform", function(d,i){
+        return "translate(0,"+i*18+")";
+    });
+
+    legend.append("rect")
+            .attr("x", width_comp4_upper-70)
+            .attr("width", 16)
+            .attr("height", 16)
+            .style("fill",function(d){ m = d; return legendobj[m] })
+            .style("padding", 20)
+
+    legend.append("text")
+    .attr("x", width_comp4_upper-50)
+    .attr("y", 9)
+    .attr("dy", ".30em")
+    .style("text-anchor","start")
+    .text(function(d){ return d;});
+}
+
+
+
 function plotTimeSeries_upper(data){
 
    remover(g_time_series_upper);
@@ -159,5 +197,5 @@ function plotTimeSeries_upper(data){
    appendDomain_upper(data);
    appendLine_upper(data);
    appendScales_upper(); 
-
+   addLegendTimeSeries(svg_time_series_upper)
 }

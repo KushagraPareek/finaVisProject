@@ -44,8 +44,8 @@ function generate_radar(county1, county2, county3, features, counties_selected){
     d3.selectAll(".radar-chart").remove()
     //setting the svg
     let svg2 = d3.select("#radar").append("svg")
-        .attr("width", width+10)
-        .attr("height", height+15)
+        .attr("width", width+25)
+        .attr("height", height+35)
         .attr("class", "radar-chart");
     //console.log("svg created")
     //console.log(svg2)
@@ -63,7 +63,7 @@ function generate_radar(county1, county2, county3, features, counties_selected){
     .attr("cy", height/2)
     .attr("fill", "none")
     .attr("stroke", "black")
-    .attr("r", radialScale(t)/2));
+    .attr("r", radialScale(t)/2))
 
     newheight = height/2
     newwidth = width/2
@@ -77,8 +77,8 @@ function generate_radar(county1, county2, county3, features, counties_selected){
     
     //calculating the angle coordinates
     function angleToCoordinate(angle, value){
-        let x = Math.cos(angle) * radialScale(value);
-        let y = Math.sin(angle) * radialScale(value);
+        let x = Math.cos(angle) * radialScale(value)/2;
+        let y = Math.sin(angle) * radialScale(value)/2;
       //  console.log("angle to coordinates: ",x,", ",y)
         return {"x": (newwidth) + x, "y": (newheight)- y};
     }
@@ -88,8 +88,8 @@ function generate_radar(county1, county2, county3, features, counties_selected){
     for (var i = 0; i < features.length; i++) {
         let ft_name = features[i];
         let angle = (Math.PI / 2) + (2 * Math.PI * i / features.length);
-        let line_coordinate = angleToCoordinate(angle, 0.5);
-        let label_coordinate = angleToCoordinate(angle, 0.53);
+        let line_coordinate = angleToCoordinate(angle, 1);
+        let label_coordinate = angleToCoordinate(angle, 1.09);
 
         console.log("feature name: ", ft_name, "coords: ", label_coordinate)
 
@@ -106,7 +106,7 @@ function generate_radar(county1, county2, county3, features, counties_selected){
     //draw axis label
     svg2.append("text")
     .attr("x", label_coordinate.x-50)
-    .attr("y", label_coordinate.y+10)
+    .attr("y", label_coordinate.y+5)
     .text(ft_name);
 
 }
@@ -196,14 +196,14 @@ function addLegend(svg2, counties_selected)
     });
 
     legend.append("rect")
-            .attr("x", 2*width-70)
+            .attr("x", 2*newwidth-70)
             .attr("width", 16)
             .attr("height", 16)
             .style("fill",function(d){ m = d; return legendobj[m] })
             .style("padding", 20)
 
     legend.append("text")
-    .attr("x", 2*width-50)
+    .attr("x", 2*newwidth-50)
     .attr("y", 9)
     .attr("dy", ".30em")
     .style("text-anchor","start")

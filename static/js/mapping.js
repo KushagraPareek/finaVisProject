@@ -320,7 +320,7 @@ function getRadarData(selected_counties_name){
       contentType: "application/json; charset=utf-8",
       dataType: "json",
       success: function (data) {
-          alert(JSON.stringify(data));
+     //     alert(JSON.stringify(data));
           plot_radar(data)
       }
   });

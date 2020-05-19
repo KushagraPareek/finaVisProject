@@ -20,8 +20,8 @@ $.post("/scatterdata", {'county': 'New York'}, function(data){
     var jsondata = JSON.parse(data['data'])
  //   console.log(jsondata)
     data = jsondata
-    
-    plot(data)
+    let county = data[0].County
+    plot(data, county)
 
  })
 
@@ -29,12 +29,16 @@ $.post("/scatterdata", {'county': 'New York'}, function(data){
 // When reading the csv, I must format variables:
 function plotScatter(data){
     d3.selectAll("#scatt").remove()
+    d3.selectAll(".legendscatter").remove()
     data = JSON.parse(data['data'])
    // console.log(data)
-    plot(data)
+   let county = data[0].County
+   console.log("county", county)
+    plot(data, county)
 }
 
-    function plot(data){
+    function plot(data, county){
+        addLegendScatter(svg5, county)
     // // Add the line
     //setting the axes once
     var x = d3.scaleTime()
@@ -70,16 +74,6 @@ function plotScatter(data){
         .y(function(d) { return y(d.CaseLoad) })
         )
 
-    // var Tooltip = d3.select("#scatter")
-    //   .append("div")
-    //   .style("opacity", 0)
-    //   .attr("class", "tooltip")
-    //   .style("background-color", "white")
-    //   .style("border", "solid")
-    //   .style("border-width", "2px")
-    //   .style("border-radius", "5px")
-    //   .style("padding", "5px")
-
       function tooltip_data(d){
 
         return "Date: "+(d.date)+"<br>"+
@@ -95,7 +89,7 @@ function plotScatter(data){
         .attr("class", "myCircle")
         .attr("cx", function(d) { return x(parseTime(d.date)) } )
         .attr("cy", function(d) { return y(d.CaseLoad) } )
-        .attr("r", 2)
+        .attr("r",4)
         .attr("id", "scatt")
         .attr("stroke", "#69b3a2")
         .attr("stroke-width", 3)
@@ -113,4 +107,38 @@ function plotScatter(data){
          }); 
 
 
+}
+
+function addLegendScatter(svg2, county)
+{
+    // adding the legend
+    var legend;
+    var legendobj ={}
+    legendobj[county]= '#69b3a2'
+    var legendnames = [county]
+
+    //console.log("legendobj", legendobj)
+
+    legend = svg2.selectAll(".legendscatter")
+    .data(legendnames)
+    .enter()
+    .append("g")
+    .attr("class","legendscatter")
+    .attr("transform", function(d,i){
+        return "translate(0,"+i*18+")";
+    });
+
+    legend.append("rect")
+            .attr("x", width-70)
+            .attr("width", 16)
+            .attr("height", 16)
+            .style("fill",function(d){ m = d; return legendobj[m] })
+            .style("padding", 20)
+
+    legend.append("text")
+    .attr("x", width-50)
+    .attr("y", 9)
+    .attr("dy", ".30em")
+    .style("text-anchor","start")
+    .text(function(d){ return d;});
 }
